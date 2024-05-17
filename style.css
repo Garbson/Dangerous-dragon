@@ -1,5 +1,13 @@
 body {
   background-color: #0a0a23;
+  min-height: 100vh; /* Ocupa pelo menos a altura total da viewport */
+  margin: 0; /* Remove qualquer margem padrão */
+  padding: 0;
+  display: flex; /* Flexbox para facilitar o alinhamento */
+  flex-direction: column; /* Direção da coluna */
+  justify-content: center; /* Centralizar verticalmente */
+  align-items: center; /* Centralizar horizontalmente */
+  box-sizing: border-box; /* Inclui padding e border na altura total */
 }
 
 #text {
@@ -9,14 +17,13 @@ body {
 }
 
 #game {
-  max-width: 50%;
-  max-height: 400px;
+  width: 45%;
   background-color: #ffffff;
-  color: #ffffff;
-  margin-left: auto;
-  margin-right: auto;
+  color: #0a0a23;
   margin-top: 1%;
   padding: 10px;
+  border-radius: 10px; /* Borda arredondada */
+  box-sizing: border-box; /* Inclui padding e border na altura e largura */
 }
 
 #controls,
@@ -24,6 +31,7 @@ body {
   border: 1px solid #0a0a23;
   padding: 5px;
   color: #0a0a23;
+  margin-bottom: 10px; /* Margem inferior para separar os elementos */
 }
 
 #monsterStats {
@@ -44,13 +52,40 @@ button {
   background-color: #feac32;
   background-image: linear-gradient(#fecc4c, #ffac33);
   border: 3px solid #feac32;
+  border-radius: 5px; /* Borda arredondada */
+  padding: 5px 10px; /* Preenchimento interno */
 }
 
 .img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  height: auto;
+  margin: 0 auto; /* Centralizar a imagem */
+  max-width: 40%; /* Largura inicial */
+  height: 40%;
   border-radius: 20px;
+  margin-top: 1%;
+  object-fit: contain;
+}
+
+@media (max-width: 800px) {
+  #game {
+    width: 90%;
+    padding: 8px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+  }
+  .img {
+    max-width: 90%;
+    height: auto; /* Ajuste para manter a proporção */
+  }
+  #controls button {
+    font-size: 13px;
+    margin: 2px;
+    display: flex; /* Flexbox para facilitar o alinhamento */
+    flex-direction: column; /* Direção da coluna */
+    justify-content: center; /* Centralizar verticalmente */
+    align-items: center;
+  }
+  #text{
+    font-size: 18px;
+  }
 }
