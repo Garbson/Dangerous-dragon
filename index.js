@@ -67,7 +67,7 @@ const locations = [
       "volte para a cidade",
     ],
     "button functions": [fightSlime, fightBeast, goTown],
-    text: "Você, entrou na caverna, você ver monstros e trevas",
+    text: "Você, entrou na floresta, você ver monstros e trevas",
     img: "./img/floresta.jpg",
   },
   {
