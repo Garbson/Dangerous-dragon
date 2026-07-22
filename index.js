@@ -5,8 +5,9 @@ let currentWeapon = 0;
 let fighting;
 let monsterHealth;
 let inventory = ["bastão"];
+let backgroundBody = "./img/inicio.jpeg";
 
-const imagem = document.querySelector("#imagemText");
+
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -23,17 +24,21 @@ const weapons = [
   { name: "machado", power: 50 },
   { name: "espada", power: 100 },
 ];
+
 const monsters = [
+  // monstro 0
   {
     name: "urso",
     level: 2,
     health: 15,
   },
+  // monstro 1
   {
     name: "cavaleiro das trevas",
     level: 8,
     health: 60,
   },
+  // monstro 2
   {
     name: "dragão",
     level: 20,
@@ -41,13 +46,15 @@ const monsters = [
   },
 ];
 const locations = [
+// item 0
   {
     name: "town square",
-    "button text": ["Va para a loja", "Va para a floresta", "Lute com o dragão"],
+    "button text": ["Va casa do cacete", "Va para a claro", "Lute com o lula"],
     "button functions": [goStore, goCave, fightDragon],
     text: 'Você está na praça da cidade. Você vê uma placa que diz "Loja".',
     img: "./img/goTown.jpeg",
   },
+// item 1
   {
     name: "store",
     "button text": [
@@ -75,7 +82,7 @@ const locations = [
     "button text": ["atacar", "esquivar", "correr"],
     "button functions": [attack, dodge, goTown],
     text: "Você está lutando contra um monstro",
-    
+
   },
   {
     name: "kill monster",
@@ -93,15 +100,15 @@ const locations = [
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
     "button functions": [restart, restart, restart],
     text: "Minha arma quebrou, minha armadura está quebrada, gotas de sangue escorrem, Estou cansado eu não quero mais correr... estou aqui há muito tempo vou descansar aqui um pouco, sim apenas um pouco...",
-    img: "./img/lose.jpg"  
-},
+    img: "./img/lose.jpg"
+  },
   {
     name: "win",
     "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
     "button functions": [restart, restart, restart],
     text: "No auge da batalha, quando o clangor das espadas ecoava pelos campos e o fogo do dragão pintava o céu de rubro, o cavaleiro ergueu sua espada com determinação. Seu coração pulsava com a coragem dos ancestrais, e seus olhos refletiam a chama da vitória queimando intensamente.Com um golpe certeiro, o cavaleiro brandiu sua lâmina contra as sombras que assolavam a cidade. O dragão, por um instante, pareceu recuar diante da ferocidade da investida. E então, em um momento de triunfo, o monstro alado soltou um rugido de morte. E assim, com a força de um herói determinado e a coragem de um verdadeiro cavaleiro, a batalha chegou ao seu glorioso fim. O dragão, agora enfraquecido e derrotado, recuou para as profundezas de sua caverna, deixando para trás apenas o eco distante de sua ira vencida.Sob os olhares admirados dos cidadãos, o cavaleiro ergueu sua espada para o céu, uma testemunha silenciosa da vitória conquistada. Nas ruas da cidade, o povo celebrava, suas vozes se unindo em um coro de gratidão e alegria pela libertação da tirania do dragão. E ali, no resplendor da luz da vitória, o cavaleiro permaneceu — um símbolo de esperança e coragem para todos aqueles que ousavam sonhar com um futuro livre da sombra do medo. Pois naquele momento, ele não era apenas um guerreiro vitorioso, mas sim um verdadeiro herói, cujo nome seria lembrado nas canções e lendas de tempos imemoriais.",
     img: "./img/win.jpeg"
-},
+  },
   {
     name: "easter egg",
     "button text": ["2", "8", "Go to town square?"],
@@ -124,7 +131,7 @@ function update(location) {
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
   text.innerHTML = location.text;
-  imagem.src = location.img;
+  mudarBackground(location.img)
 }
 
 function goTown() {
@@ -145,10 +152,10 @@ function buyHealth() {
     health += 10;
     goldText.innerText = gold;
     healthText.innerText = health;
-    imagem.src = "./img/buyHealth.jpeg";
+    mudarBackground("./img/buyHealth.jpeg")
   } else {
     text.innerText = "Você não tem ouro suficiente para comprar saúde.";
-    imagem.src = "./img/buyHealth.jpeg";
+    mudarBackground("./img/noGoldHealth.jpeg")
   }
 }
 
@@ -162,9 +169,10 @@ function buyWeapon() {
       text.innerText = "Agora você tem " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " no seu inventario você tem " + inventory;
-      imagem.src = "./img/armas.jpg";
+      mudarBackground("./img/weaponBought.jpeg")
     } else {
       text.innerText = "Você não tem ouro suficiente para comprar uma arma.";
+      mudarBackground("./img/noGoldWeapon.jpeg")
     }
   } else {
     text.innerText = "Você já tem a arma mais poderosa!";
@@ -188,19 +196,21 @@ function sellWeapon() {
 function fightSlime() {
   fighting = 0;
   goFight();
-  imagem.src = "./img/urso.jpg"
+  mudarBackground("./img/urso.jpg")
+  imprimir("hello world!")
 }
 
 function fightBeast() {
   fighting = 1;
   goFight();
-  imagem.src = "./img/cavaleiro.jpg"
+  mudarBackground("./img/cavaleiro.jpg")
 }
 
 function fightDragon() {
   fighting = 2;
   goFight();
-  imagem.src = "./img/dragonFight.jpg"
+  mudarBackground("./img/dragonFight.jpg")
+
 }
 
 function goFight() {
@@ -290,6 +300,15 @@ function pickTwo() {
 
 function pickEight() {
   pick(8);
+}
+
+function imprimir(texto) {
+  console.log(texto)
+}
+
+function mudarBackground(url) {
+  backgroundBody = url
+  document.documentElement.style.setProperty('--img-body', `url(${backgroundBody})`)
 }
 
 function pick(guess) {

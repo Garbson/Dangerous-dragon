@@ -1,13 +1,21 @@
 body {
-  background-color: #0a0a23;
+  background-image: var(--img-body);
   min-height: 100vh; /* Ocupa pelo menos a altura total da viewport */
-  margin: 0; /* Remove qualquer margem padrão */
-  padding: 0;
   display: flex; /* Flexbox para facilitar o alinhamento */
-  flex-direction: column; /* Direção da coluna */
   justify-content: center; /* Centralizar verticalmente */
-  align-items: center; /* Centralizar horizontalmente */
   box-sizing: border-box; /* Inclui padding e border na altura total */
+  width: 100%;
+}
+
+:root {
+  --img-body: url("./img/inicio.jpeg");
+}
+
+.cointainer {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+  width: 50%;
 }
 
 #text {
@@ -17,7 +25,7 @@ body {
 }
 
 #game {
-  width: 45%;
+  width: 100%;
   background-color: #ffffff;
   color: #0a0a23;
   margin-top: 1%;
@@ -59,8 +67,8 @@ button {
 .img {
   display: block;
   margin: 0 auto; /* Centralizar a imagem */
-  max-width: 40%; /* Largura inicial */
-  height: 40%;
+  max-width: 100%; /* Largura inicial */
+  height: auto;
   border-radius: 20px;
   margin-top: 1%;
   object-fit: contain;
@@ -85,7 +93,7 @@ button {
     justify-content: center; /* Centralizar verticalmente */
     align-items: center;
   }
-  #text{
+  #text {
     font-size: 18px;
   }
 }
